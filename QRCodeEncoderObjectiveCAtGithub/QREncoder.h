@@ -29,6 +29,8 @@ const static unsigned char WHITE =  0xff;
 
 + (UIImage*)renderDataMatrix:(DataMatrix*)matrix imageDimension:(int)imageDimension;
 
++ (UIImage*)QRCodeImageFromString:(NSString *)string imageSize:(int)size;
+
 @end
 
 void FLProviderReleaseData(void *info, const void *data, size_t size);

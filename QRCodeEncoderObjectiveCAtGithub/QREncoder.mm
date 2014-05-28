@@ -157,6 +157,13 @@
     return newImage;
 }
 
++ (UIImage*)QRCodeImageFromString:(NSString *)string imageSize:(int)size {
+    DataMatrix *matrix = [self encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:string];
+    return [self renderDataMatrix:matrix imageDimension:size];
+}
+
+
+
 void FLProviderReleaseData(void *info, const void *data, size_t size) {
     free((void *)data);
 }
