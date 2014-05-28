@@ -1197,9 +1197,9 @@ bool CQR_Encode::EncodeSourceData(LPCSTR lpsSource, int ncLength, int nVerGroup)
 			// 漢字モードでビット列保存
 			for (j = 0; j < m_nBlockLength[i] / 2; ++j)
 			{
-				WORD wBinCode = KanjiToBinaly((WORD)(((BYTE)lpsSource[ncComplete + (j * 2)] << 8) + (BYTE)lpsSource[ncComplete + (j * 2) + 1]));
+				WORD lwBinCode = KanjiToBinaly((WORD)(((BYTE)lpsSource[ncComplete + (j * 2)] << 8) + (BYTE)lpsSource[ncComplete + (j * 2) + 1]));
 
-				m_ncDataCodeWordBit = SetBitStream(m_ncDataCodeWordBit, wBinCode, 13);
+				m_ncDataCodeWordBit = SetBitStream(m_ncDataCodeWordBit, lwBinCode, 13);
 			}
 
 			ncComplete += m_nBlockLength[i];
