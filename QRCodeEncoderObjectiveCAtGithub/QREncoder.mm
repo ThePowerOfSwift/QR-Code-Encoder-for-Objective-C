@@ -158,7 +158,7 @@
 }
 
 + (UIImage*)QRCodeImageFromString:(NSString *)string imageSize:(int)size {
-    DataMatrix *matrix = [self encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:string];
+    DataMatrix *matrix = [self encodeWithECLevel:QR_ECLEVEL_L version:QR_VERSION_AUTO string:string];
     return [self renderDataMatrix:matrix imageDimension:size];
 }
 
