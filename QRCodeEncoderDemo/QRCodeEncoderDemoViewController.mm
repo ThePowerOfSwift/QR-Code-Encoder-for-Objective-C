@@ -5,11 +5,6 @@
 
 @implementation QRCodeEncoderDemoViewController
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
@@ -42,7 +37,6 @@
     
     //and that's it!
     [self.view addSubview:qrcodeImageView];
-    [qrcodeImageView release];
 }
 
 @end
