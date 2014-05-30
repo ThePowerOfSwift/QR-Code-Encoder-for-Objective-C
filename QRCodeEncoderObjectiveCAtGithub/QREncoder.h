@@ -3,14 +3,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <CommonCrypto/CommonCryptor.h>
-#include "QR_Encode.h"
 #import "DataMatrix.h"
 
 const static int QR_ECLEVEL_AUTO =  0;
-const static int QR_ECLEVEL_H =     QR_LEVEL_H;
-const static int QR_ECLEVEL_M =     QR_LEVEL_M;
-const static int QR_ECLEVEL_L =     QR_LEVEL_L;
-const static int QR_ECLEVEL_Q =     QR_LEVEL_Q;
+extern const int QR_ECLEVEL_H;
+extern const int QR_ECLEVEL_M;
+extern const int QR_ECLEVEL_L;
+extern const int QR_ECLEVEL_Q;
 
 const static int QR_VERSION_AUTO =  -1;
 
