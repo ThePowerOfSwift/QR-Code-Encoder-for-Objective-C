@@ -1,6 +1,7 @@
 
 #import "QREncoder.h"
 #import "QR_Encode.h"
+#import "UIImage+dooHelpers.h"
 
 const int QR_ECLEVEL_H = QR_LEVEL_H;
 const int QR_ECLEVEL_M = QR_LEVEL_M;
@@ -163,8 +164,14 @@ const int QR_ECLEVEL_Q = QR_LEVEL_Q;
 }
 
 + (UIImage*)QRCodeImageFromString:(NSString *)string imageSize:(int)size {
-    DataMatrix *matrix = [self encodeWithECLevel:QR_ECLEVEL_L version:QR_VERSION_AUTO string:string];
-    return [self renderDataMatrix:matrix imageDimension:size];
+    DataMatrix *matrix = [self encodeWithECLevel:QR_ECLEVEL_AUTO version:QR_VERSION_AUTO string:string];
+    
+    int imageSize = matrix.dimension;
+    while (imageSize < size) {
+        imageSize *= 2;
+    }
+    UIImage *image = [self renderDataMatrix:matrix imageDimension:imageSize];
+    return [image imageScaledToSize:CGSizeMake(size, size) fillIn:YES];
 }
 
 

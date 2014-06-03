@@ -4,10 +4,8 @@
 
 
 @interface DataMatrix : NSObject {
-    
     int dim;
     bool** data;
-
 }
 
 - (id)initWith:(int)dimension;

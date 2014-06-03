@@ -6,37 +6,37 @@
 @implementation DataMatrix
 
 - (id)initWith:(int)dimension {
-    if ([super init]) {
-        self->dim = dimension;
-        self->data = (bool**)malloc(sizeof(bool*) * self->dim);
+    self = [super init];
+    if (self) {
+        dim = dimension;
+        data = (bool**)malloc(sizeof(bool*) * dim);
         for (int y=0; y<self->dim; y++) {
-            self->data[y] = (bool*)malloc(sizeof(bool) * self->dim);
-            if (self->data[y]==NULL) {
+            data[y] = (bool*)malloc(sizeof(bool) * dim);
+            if (data[y]==NULL) {
                 NSLog(@"null!");
             }
         }
-        
     }
     return self;
 }
 
 - (int)dimension {
-    return self->dim;
+    return dim;
 }
 
 - (void)set:(bool)value x:(int)x y:(int)y {
-    self->data[y][x] = value;
+    data[y][x] = value;
 }
 
 - (bool)valueAt:(int)x y:(int)y {
-    return self->data[y][x];
+    return data[y][x];
 }
 
 - (NSString*)toString {
     NSString* string = [NSString string];
-    for (int y=0; y<self->dim; y++) {
-        for (int x=0; x<self->dim; x++) {
-            bool value = self->data[y][x];
+    for (int y = 0; y < dim; y++) {
+        for (int x = 0; x < dim; x++) {
+            bool value = data[y][x];
             string = [string stringByAppendingFormat:@"%d", value];
         }
         string = [string stringByAppendingString:@"\n"];
@@ -45,10 +45,10 @@
 }
 
 - (void)dealloc {
-    for (int y=0; y<self->dim; y++) {
-        free(self->data[y]);
+    for (int y = 0; y < dim; y++) {
+        free(data[y]);
     }
-    free(self->data);
+    free(data);
 }
 
 @end
