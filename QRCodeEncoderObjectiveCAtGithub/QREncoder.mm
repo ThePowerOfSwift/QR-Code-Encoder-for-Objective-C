@@ -104,17 +104,20 @@ const int QR_ECLEVEL_Q = QR_LEVEL_Q;
     
     // alpha, blue, green, red
     const uint32_t white = 0xFFFFFFFF, black = 0xFF000000, transp = 0x00FFFFFF;
+    memset(rawData, transp, rawDataSize);
     
     uint32_t *ptrData = (uint32_t *)rawData;
     // top offset
-    for(int c=offsetTopAndLeft*imageDimension; c>0; c--)
+    for(int c=offsetTopAndLeft*imageDimension; c>0; c--) {
         *(ptrData++) = transp;
+    }
     
     for(int my=0; my<matrixDimension; my++) {
-        uint32_t *ptrDataSouce = ptrData; // start of the row we will copy
+        uint32_t *ptrDataSource = ptrData; // start of the row we will copy
         // left offset
-        for(int c=offsetTopAndLeft; c>0; c--) 
+        for(int c=offsetTopAndLeft; c>0; c--) {
             *(ptrData++) = transp;
+        }
         
         for(int mx=0; mx<matrixDimension; mx++) {
             uint32_t clr = [matrix valueAt:mx y:my] ? black : white;
@@ -124,12 +127,14 @@ const int QR_ECLEVEL_Q = QR_LEVEL_Q;
         }
         
         // right offset
-        for(int c=offsetBottomAndRight; c>0; c--) 
+        for(int c=offsetBottomAndRight; c>0; c--) {
             *(ptrData++) = transp;
+        }
         
         // then copy that row pixelPerDot-1 times
-        for(int c=(pixelPerDot-1)*imageDimension; c>0; c--) 
-            *(ptrData++) = *(ptrDataSouce++);
+        for(int c=(pixelPerDot-1)*imageDimension; c>0; c--) {
+            *(ptrData++) = *(ptrDataSource++);
+        }
     }
     
     // bottom offset
